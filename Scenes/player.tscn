@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnsd5t3jhnrbl"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_qk2pn"]
+[ext_resource type="PackedScene" uid="uid://cxc75df0t1ar" path="res://Resources/spaceship.glb" id="2_4bn6a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7oi4"]
+size = Vector3(0.62941, 0.427307, 0.572662)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m13vi"]
+size = Vector3(0.607178, 0.231934, 0.563599)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_qk2pn")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="Pivot" instance=ExtResource("2_4bn6a")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030899, 0.105804, 0.0984039)
+shape = SubResource("BoxShape3D_l7oi4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0140381, 0.109131, 0.113342)
+shape = SubResource("BoxShape3D_m13vi")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

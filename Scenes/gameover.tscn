@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4iuvxoet0x8y"]
+
+[ext_resource type="Script" path="res://Scripts/gameover.gd" id="1_bdasx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j4wqc"]
+font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2jhi"]
+font_size = 28
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_bdasx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 85.0
+offset_top = 121.0
+offset_right = 1086.0
+offset_bottom = 329.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_j4wqc")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 153.0
+offset_top = 321.0
+offset_right = 1020.0
+offset_bottom = 397.0
+text = "PRESS \"SPACE BAR\" TO PLAY AGAIN"
+label_settings = SubResource("LabelSettings_d2jhi")
+horizontal_alignment = 1

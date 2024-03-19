@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://kipsgv8s1irk"]
+
+[ext_resource type="Texture2D" uid="uid://dn0m1mx2auv74" path="res://Resources/kloofendal_43d_clear_puresky_2k.hdr" id="1_wa8o4"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hpexu"]
+panorama = ExtResource("1_wa8o4")
+
+[sub_resource type="Sky" id="Sky_6cvpq"]
+sky_material = SubResource("PanoramaSkyMaterial_hpexu")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_6cvpq")

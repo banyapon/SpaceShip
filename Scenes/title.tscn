@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://06st8hisrtkf"]
+
+[ext_resource type="Environment" uid="uid://kipsgv8s1irk" path="res://skybox.tres" id="1_4ekgk"]
+[ext_resource type="Script" path="res://Scripts/title.gd" id="1_rtppm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xq2m6"]
+font_size = 90
+font_color = Color(0.945098, 0.505882, 0.286275, 1)
+outline_size = 23
+shadow_size = 30
+shadow_color = Color(0.109804, 0.109804, 0.109804, 0.866667)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8hba"]
+font_size = 24
+
+[node name="Title" type="Node3D"]
+script = ExtResource("1_rtppm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 190.0
+offset_top = 193.0
+offset_right = 981.0
+offset_bottom = 318.0
+text = "SPACE X SHOOTER"
+label_settings = SubResource("LabelSettings_xq2m6")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 331.0
+offset_top = 353.0
+offset_right = 822.0
+offset_bottom = 392.0
+text = "PRESS \"SPACE BAR\" TO PLAY GAME"
+label_settings = SubResource("LabelSettings_m8hba")
+horizontal_alignment = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+environment = ExtResource("1_4ekgk")

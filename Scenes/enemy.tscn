@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbo20ecy1q65h"]
+
+[ext_resource type="PackedScene" uid="uid://cnx18xa3ox44a" path="res://Resources/low_poly_spaceship.glb" id="1_eix0b"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_mmyp7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_px3pu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8mxe3"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_mmyp7")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="Pivot" instance=ExtResource("1_eix0b")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0894428, -0.0447213, 0, 0.0447213, 0.0894428, 0, 0.19213, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_px3pu")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_8mxe3")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

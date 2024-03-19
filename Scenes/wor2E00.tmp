@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://bl1h4rki7qwa8"]
+
+[ext_resource type="Texture2D" uid="uid://daedtenhctggf" path="res://Resources/water.jpg" id="1_eiemg"]
+[ext_resource type="Script" path="res://Scripts/World.gd" id="1_s43y2"]
+[ext_resource type="Script" path="res://Scripts/Water.gd" id="2_ui1p3"]
+[ext_resource type="PackedScene" uid="uid://bnsd5t3jhnrbl" path="res://Scenes/player.tscn" id="2_uk6ck"]
+[ext_resource type="Environment" uid="uid://kipsgv8s1irk" path="res://skybox.tres" id="3_n36tf"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_caxnc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbh5a"]
+albedo_color = Color(0.521569, 0.521569, 0.521569, 1)
+albedo_texture = ExtResource("1_eiemg")
+uv1_scale = Vector3(15, 15, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63pcc"]
+size = Vector3(0.253418, 2.78479, 1.47119)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urui1"]
+size = Vector3(0.21582, 3.00159, 1.48438)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xi7r"]
+size = Vector3(6.56121, 0.0662842, 3.41875)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ai3w"]
+size = Vector3(7.68628, 0.940247, 8.5788)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_s43y2")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, -10.9499)
+mesh = SubResource("PlaneMesh_caxnc")
+surface_material_override/0 = SubResource("StandardMaterial3D_vbh5a")
+script = ExtResource("2_ui1p3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShapeLeft" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62515, 1.39538, 0.235596)
+shape = SubResource("BoxShape3D_63pcc")
+
+[node name="CollisionShapeRight" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4139, 1.50542, 0.242188)
+shape = SubResource("BoxShape3D_urui1")
+
+[node name="CollisionShapeTop" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257803, 2.63179, 1.02609)
+shape = SubResource("BoxShape3D_4xi7r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130981, -0.0298767, -0.895966)
+shape = SubResource("BoxShape3D_0ai3w")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.631207, 1.84704)
+
+[node name="Pivot" type="Node3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05082, 0.788816)
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.977607, 0.210438, 0, -0.210438, 0.977607, 0, 0.0280957, 0.331326)
+environment = ExtResource("3_n36tf")
+fov = 60.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.847001, 0.164605, 0.505465, -0.529571, 0.178439, 0.829286, 0.0463096, -0.970085, 0.238308, 2.57727, 3.65861, -2.91867)
+light_energy = 4.0
+light_indirect_energy = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_uk6ck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666984, 0.26813)
